@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="calculadora.css">
 </head>
 <body>
-    <textarea id="input" cols="30" rows="10"></textarea>
-    <div id="results" style="display: inline-block; vertical-align: top;"></div>
-    <div>Total: <span id="total"></span></div>
+    <textarea class="input" id="input" autofocus>
+2
+-3.2
+No soy un número
+0xA
+0b101</textarea>
+    <div id="results" class="line-results"></div>
+    <div class="total-text">Total:</div>
+    <div class="total-result"><span id="total"></span></div>
 
     <script src="calculadora.js"></script>
 </body>
