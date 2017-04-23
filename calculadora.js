@@ -16,6 +16,7 @@ function calculate(numbers) {
 }
 
 function onKeyUp(event) {
+    localStorage.setItem('input', textarea.value);
     calculate(textarea.value.split(/\r\n|\r|\n/g))
 }
 
@@ -33,7 +34,13 @@ function onKeyPress(event) {
 
 const textarea = document.querySelector('#input');
 
+if (localStorage.getItem('input')) {
+    textarea.value = localStorage.getItem('input');
+} else {
+    textarea.value = ['2', '-3.2', 'No soy un número', '0xA', '0b101'].join('\n');
+}
+
 textarea.addEventListener('keyup', onKeyUp);
 textarea.addEventListener('keypress', onKeyPress);
 
-calculate(textarea.value.split('\n'));
+calculate(textarea.value.split(/\r\n|\r|\n/g));
