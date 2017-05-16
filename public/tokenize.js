@@ -1,5 +1,5 @@
 function tokenize(input) {
-    const regex = /^\s*([0-9]+|[+-\/\*])\s*/;
+    const regex = /^\s*([0-9]+|[+-\/\*\(\)])\s*/;
     let matches = [];
     do {
         match = regex.exec(input);

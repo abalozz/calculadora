@@ -24,3 +24,9 @@ test('get tokens of operations with 3 operators', assert => {
     assert.same(tokenize('24*2/48'), ['24', '*', '2', '/', '48']);
     assert.end();
 });
+
+test('get tokens of operations with parenthesis', assert => {
+    assert.same(tokenize('2+(2-3)'), ['2', '+', '(', '2', '-', '3', ')']);
+    assert.same(tokenize('2 + ((3 - 4) + 5)'), ['2', '+', '(', '(', '3', '-', '4', ')', '+', '5', ')']);
+    assert.end();
+});
