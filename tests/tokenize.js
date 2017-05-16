@@ -30,3 +30,9 @@ test('get tokens of operations with parenthesis', assert => {
     assert.same(tokenize('2 + ((3 - 4) + 5)'), ['2', '+', '(', '(', '3', '-', '4', ')', '+', '5', ')']);
     assert.end();
 });
+
+test('get tokens of incorrect operations returns an error', assert => {
+    assert.throws(() => tokenize('not an op'), Error);
+    assert.throws(() => tokenize('2+3p4'), Error);
+    assert.end();
+});

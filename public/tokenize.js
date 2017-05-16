@@ -5,7 +5,7 @@ function tokenize(input) {
         match = regex.exec(input);
 
         if (!match) {
-            return matches;
+            throw new Error('Invalid expression');
         }
 
         matches.push(match[1]);
