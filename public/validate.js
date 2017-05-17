@@ -1,11 +1,21 @@
 const rules = {
-    'number': ['operator'],
-    'operator': ['number'],
+    'number': ['operator', 'close parenthesis'],
+    'operator': ['number', 'open parenthesis'],
+    'open parenthesis': ['number', 'open parenthesis'],
+    'close parenthesis': ['operator', 'close parenthesis'],
 };
 
 function getTypeOfToken(token) {
     if (isFinite(token)) {
         return 'number';
+    }
+
+    if (token === '(') {
+        return 'open parenthesis';
+    }
+
+    if (token === ')') {
+        return 'close parenthesis';
     }
 
     if (['+', '-', '*', '/'].includes(token)) {
@@ -19,12 +29,24 @@ function canBeFollowedBy(token, nextToken) {
     return rules[getTypeOfToken(token)].includes(getTypeOfToken(nextToken));
 }
 
-function validate(tokens) {
-    let token = tokens[0];
-
-    if (getTypeOfToken(tokens[0]) !== 'number' || getTypeOfToken(tokens[tokens.length - 1]) !== 'number') {
+function firstAndLastTokensAreValid(tokens) {
+    if (!['number', 'open parenthesis'].includes(getTypeOfToken(tokens[0]))) {
         return false;
     }
+
+    if (!['number', 'close parenthesis'].includes(getTypeOfToken(tokens[tokens.length - 1]))) {
+        return false;
+    }
+
+    return true;
+}
+
+function validate(tokens) {
+    if (!firstAndLastTokensAreValid(tokens)) {
+        return false;
+    }
+
+    let token = tokens[0];
 
     for (nextToken of tokens.slice(1)) {
         if (!canBeFollowedBy(token, nextToken)) {

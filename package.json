@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "tests": "./node_modules/.bin/tape 'tests/**/*.js' | node_modules/.bin/tap-sumary"
+    "tests": "./node_modules/.bin/tape 'tests/**/*.js' | node_modules/.bin/tap-summary"
   },
   "devDependencies": {
     "tap-summary": "^3.0.2",
